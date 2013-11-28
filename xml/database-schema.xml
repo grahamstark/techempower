@@ -1,0 +1,16 @@
+<?xml version="1.0"  encoding="ISO-8859-1"  standalone="no" ?>
+<!DOCTYPE database PUBLIC "http://virtual-worlds.biz/Mill"  "http://www.virtual-worlds.biz/dtds/mill.dtd">
+<database name=".techempower">
+        
+        <table name="world" description="Test 2" >
+           
+                <column name="id"  
+                        primaryKey='true'
+                        type='INTEGER'
+                        description=""/>
+                <column name="randomNumber"  
+                        default=''
+                        type="INTEGER" />
+        </table>
+
+</database>

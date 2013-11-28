@@ -1,0 +1,21 @@
+-- see: http://docs.adacore.com/gnatcoll-docs/traces.html
+-- + on next line: enable everything by default
++
+-- log to this file
+>../logs/techempower.log
+--
+--  core modules
+--
+DB_COMMONS=no
+CONNECTION_POOL=yes
+--
+-- testsuite
+--
+TECHEMPOWER_TEST=yes
+--
+-- io packages
+--
+WORLD_TYPE_IO=no
+-- 
+-- === CUSTOM LOGGING START ===
+-- === CUSTOM LOGGING END ===
