@@ -1,0 +1,76 @@
+AMD FX(tm)-4170 Quad-Core Processor 8437 bogomips 8GB RAM
+
+timeout 5 secs
+threads  256 requests per thread  300
+total time taken  38.325036000 total errors  602 successes  76198
+successes/sec =  1.98820426417864E+03
+
+timeout 25 secs
+threads  256 requests per thread  300
+total time taken  41.603185000 total errors  218 successes  76582
+successes/sec =  1.84077252739183E+03
+
+with server: 2x queue size max connection = 40 keep alive limit 160
+
+timeout 25 secs
+threads  256 requests per thread  300
+total time taken  39.377077000 total errors  67 successes  76733
+successes/sec =  1.94867181228307E+03
+
+max_connction 128
+[Failed] - server messages
+ERROR:  prepared statement "cursor_stmt1395" does not exist
+message type 0x5a arrived from server while idle
+message type 0x43 arrived from server while idle
+message type 0x5a arrived from server while idle
+
+Max_Connection 80 Accept_Queue_Size 120
+timeout 25
+threads  256 requests per thread  300
+total time taken  51.429988000 total errors  167 successes  76633
+successes/sec =  1.49004506864750E+03
+
+Max_Connection 60 Accept_Queue_Size 120
+timeout 25
+threads  256 requests per thread  300
+total time taken  39.454855000 total errors  67 successes  76733
+successes/sec =  1.94483036371569E+03
+
+timeout 5 sec
+hreads  256 requests per thread  300
+total time taken  45.573278000 total errors  279 successes  76521
+successes/sec =  1.67907605856221E+03
+
+512 request threads x 300 timeout 5 secs
+total time taken  84.328720000 total errors  2348 successes  151252
+successes/sec =  1.79360009259005E+03
+
+512 request threads x 300 timeout 50 secs
+total time taken  80.817171000 total errors  307 successes  153293
+successes/sec =  1.89678750323987E+03
+
+256 request threads x 300 timeout 50 secs
+total time taken  41.597103000 total errors  2 successes  76798
+successes/sec =  1.84623433992507E+03
+
+256 request threads x 3,000 timeout 50 secs
+threads  256 requests per thread  3000
+total time taken  431.340555000 total errors  652 successes  767348
+successes/sec =  1.77898412543193E+03
+
+with db connection removed
+threads  256 requests per thread  300 timout 50 secs
+total time taken  17.498609000 total errors  0 successes  76800
+successes/sec =  4.38892028503523E+03
+
+======== Multi Query =======================================================
+http://localhost:8091/queries?queries=5000 2 100
+threads  2 requests per thread  100
+total time taken  67.310531000 total errors  1 successes  199
+successes/sec =  2.95644674085248E+00
+
+bin/multi_get http://localhost:8091/queries?queries=500 20 100
+threads  20 requests per thread  100
+total time taken  297.565003000 total errors  56 successes  1944
+successes/sec =  6.53302633172894E+00
+
