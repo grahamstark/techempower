@@ -14,7 +14,7 @@ project Techempower is
    for Languages use ("Ada");
    for Source_Dirs use ("src/", "tests/" );
    for Object_Dir use "bin/";
-   for Main use ("harness.adb", "tech_server.adb", "multi_get.adb" );
+   for Main use ("harness.adb", "tech_server.adb", "multi_get.adb", "techempower_load.adb" );
    IncludeOpt := "";
    LibOpt     := "";
 
