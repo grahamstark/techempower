@@ -43,7 +43,7 @@ procedure Multi_Get is
             data :AWS.Response.Data := AWS.Client.Get( URL => lurl, Timeouts => timeouts );
             return_code : Status_Code := AWS.Response.Status_Code( data );
          begin
-            if( i mod 100 = 0 )then
+            if( i mod 1 = 0 )then
                Put_Line( "thread " & tnum'Img & " : " & AWS.Response.Message_Body( data ));
                Put_Line( return_code'Img );
             end if;

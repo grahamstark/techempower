@@ -8,7 +8,7 @@
                 <tr><th>Id</th><th>Message</th></tr>
                 @@TABLE@@
                 <tr><td>@_ID_@</td><td>@_MESSAGES_@</td></tr>
-                @@END_TABLE@
+                @@END_TABLE@@
         </table>
 </body>
 </html>
