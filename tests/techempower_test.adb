@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-11-28 01:52:42.537779
+-- Created by ada_generator.py on 2013-12-01 16:44:15.147751
 -- 
 
 
@@ -30,8 +30,8 @@ with Fortune_Type_IO;
 package body Techempower_Test is
 
    RECORDS_TO_ADD     : constant integer := 100;
-   RECORDS_TO_DELETE  : constant integer := 50;
-   RECORDS_TO_ALTER   : constant integer := 50;
+   RECORDS_TO_DELETE  : constant integer := 0;
+   RECORDS_TO_ALTER   : constant integer := 0;
    
    package d renames DB_Commons;
    
@@ -155,7 +155,7 @@ package body Techempower_Test is
       Log( "Fortune_Type_Create_Test: create tests" );
       for i in 1 .. RECORDS_TO_ADD loop
          fortune_test_item.Id := Fortune_Type_IO.Next_Free_Id;
-         fortune_test_item.Message := To_Unbounded_String("dat forMessage");
+         -- missingfortune_test_item declaration ;
          Fortune_Type_IO.Save( fortune_test_item, False );         
       end loop;
       
@@ -164,7 +164,6 @@ package body Techempower_Test is
       Log( "Fortune_Type_Create_Test: alter tests" );
       for i in 1 .. RECORDS_TO_ALTER loop
          fortune_test_item := Fortune_Type_List.element( fortune_test_list, i );
-         fortune_test_item.Message := To_Unbounded_String("Altered::dat forMessage");
          Fortune_Type_IO.Save( fortune_test_item );         
       end loop;
       
@@ -211,9 +210,9 @@ package body Techempower_Test is
    end Name;
 
    -- === CUSTOM PROCS START ===
-     
-     
-     
+      
+         
+      
    -- === CUSTOM PROCS END ===
    
    --  Preparation performed before each routine:

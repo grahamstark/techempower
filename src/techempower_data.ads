@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-11-28 01:52:42.048974
+-- Created by ada_generator.py on 2013-12-01 16:44:14.659138
 -- 
 with Ada.Containers.Vectors;
 --
@@ -28,7 +28,7 @@ package Techempower_Data is
    --
    type Fortune_Type is record
          Id : Integer := MISSING_I_KEY;
-         Message : Unbounded_String := Ada.Strings.Unbounded.Null_Unbounded_String;
+         Message : Text := 'FIXME';
    end record;
    --
    -- container for fortune : Test 2
@@ -41,7 +41,7 @@ package Techempower_Data is
    --
    Null_Fortune_Type : constant Fortune_Type := (
          Id => MISSING_I_KEY,
-         Message => Ada.Strings.Unbounded.Null_Unbounded_String
+         Message => 'FIXME'
    );
    --
    -- simple print routine for fortune : Test 2

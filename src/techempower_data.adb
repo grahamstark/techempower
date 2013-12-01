@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-11-28 01:52:42.067504
+-- Created by ada_generator.py on 2013-12-01 16:44:14.680531
 -- 
 
 with GNAT.Calendar.Time_IO;
@@ -19,7 +19,7 @@ package body Techempower_Data is
    begin
       return  "Fortune_Type: " &
          "Id = " & rec.Id'Img &
-         "Message = " & To_String( rec.Message );
+         "Message = " & rec.Message'Img;
    end to_String;
 
 

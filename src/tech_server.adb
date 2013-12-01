@@ -84,7 +84,7 @@ begin
       
    Dispatchers.URI.Register_Regexp( 
       my_dispatcher, 
-      Global_Settings.Web_Root & "fortune", 
+      Global_Settings.Web_Root & "fortunes", 
       Callbacks.Test4_Callback'Access );
       
    GNATColl.Traces.Parse_Config_File( "./etc/logging_config_file.txt" );

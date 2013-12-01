@@ -17,7 +17,7 @@
                         type='INTEGER'
                         description=""/>
                 <column name="message"  
-                        type="VARCHAR" />
+                        type="TEXT" />
         </table>
         
 

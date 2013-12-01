@@ -1,5 +1,5 @@
 --
--- created on 28-11-2013 by Mill
+-- created on 01-12-2013 by Mill
 --
 drop database if exists techempower;
 create database techempower with encoding 'UTF-8';
@@ -15,7 +15,7 @@ CREATE TABLE world(
 
 CREATE TABLE fortune( 
        id INTEGER not null,
-       message VARCHAR(1),
+       message TEXT,
        PRIMARY KEY( id )
 );
 
