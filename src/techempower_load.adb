@@ -1,6 +1,6 @@
 with Ada.Strings.Unbounded; 
 with Ada.Text_IO;
-with Ada.Text_IO.Unbounded_IO
+with Ada.Text_IO.Unbounded_IO;
 with GNATColl.Traces;
 
 with Base_Types;
@@ -13,11 +13,10 @@ with Connection_Pool;
 
 with World_Type_IO;
 with Fortune_Type_IO;
-with Text_Utils;
 
 procedure Techempower_Load is
 
-   RECORDS_TO_ADD     : constant integer := 10000;
+   RECORDS_TO_ADD : constant integer := 0; --10000;
    
    package d renames DB_Commons;
    
@@ -55,7 +54,8 @@ begin
    loop
       exit when End_Of_File( f );
       fortune_test_item.Id := Fortune_Type_IO.Next_Free_Id;
-      fortune_test_item.text := Get_Line( f );
+      fortune_test_item.message := Unbounded_IO.Get_Line( f );
+      Unbounded_IO.Put_Line( fortune_test_item.message );
       Fortune_Type_IO.Save( fortune_test_item, False );         
    end loop;
    Close( f );

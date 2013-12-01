@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Fortunes</title>
+</head>
+<body>
+        <table>
+                <tr><th>Id</th><th>Message</th></tr>
+                @@TABLE@@
+                <tr><td>@_ID_@</td><td>@_MESSAGES_@</td></tr>
+                @@END_TABLE@
+        </table>
+</body>
+</html>

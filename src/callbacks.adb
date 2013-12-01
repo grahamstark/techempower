@@ -23,6 +23,7 @@ with AWS.Response.Set;
 with AWS.Response;
 with AWS.Server;
 with AWS.URL;
+with Templates_Parser;
 
 with Ada.Containers;
 with Ada.Directories;
@@ -40,13 +41,17 @@ with GNATColl.Traces;
 with GNATCOLL.JSON;
 
 with Techempower_Data;
+with Fortune_Type_IO;
 with World_Type_IO;
 with Connection_Pool;
+with DB_Commons;
 with GNATCOLL.SQL.Exec;
 
 package body Callbacks is
 
    log_trace : GNATColl.Traces.Trace_Handle := GNATColl.Traces.Create( "CALLBACKS" );
+
+   package d renames DB_Commons;
 
    subtype I_1_10_000 is Integer range 1 .. 10_000;
    package Random_Integers is new Ada.Numerics.Discrete_Random( I_1_10_000 );
@@ -62,45 +67,33 @@ package body Callbacks is
    function Test4_Callback( request : in AWS.Status.Data ) return AWS.Response.Data is
    use GNATCOLL.JSON;
    use GNATCOLL.SQL.Exec;
+   use Templates_Parser;
+   use Ada.Strings.Unbounded;
+   use Techempower_Data;
       session_id      : constant AWS.Session.Id := AWS.Status.Session( request );
       url             : constant AWS.URL.Object := AWS.Status.URI( request ); 
       params          : constant AWS.Parameters.List := AWS.Status.Parameters( request );
-      connection      : Database_Connection := Connection_Pool.Lease;
-      query           : constant String := "select id, randomNumber from world where id = $1" ;
-      ps              : gse.Prepared_Statement := gse.Prepare( query, On_Server => True );
-      json            : JSON_Array;
-      world_test_item : Techempower_Data.World_Type;
-      num_queries     : Integer;
-      cursor          : gse.Forward_Cursor;
-      q_string        : constant String := AWS.URL.Parameter( url, "queries" );
+      fortune_test_list : Techempower_Data.Fortune_Type_List.Vector;
+      end_fortune_test  : Fortune_Type;
+      criteria          : d.Criteria;
+      translations      : Translate_Set;
+      messages          : Vector_Tag;
+      ids               : Vector_Tag;
    begin
-      begin
-         num_queries := Integer'Value( q_string );
-         num_queries := Integer'Max( 1, num_queries );
-         num_queries := Integer'Min( 500, num_queries );
-      exception
-         when others => num_queries := 1;
-      end;
-      for i in 1 .. num_queries loop
-         declare
-            jlocal : JSON_Value := Create_Object;
-            p      : Integer := Random_Integers.Random( integer_generator );
-         begin
-            cursor.Fetch( connection, ps, Params => ( 1 => +p ));
-            if( gse.Has_Row( cursor ))then
-               world_test_item.id := gse.Integer_Value( cursor, 0 );
-               world_test_item.random_Number := gse.Integer_Value( cursor, 1 );
-            end if;
-            jlocal.Set_Field( "id", Create( world_test_item.id ));
-            jlocal.Set_Field( "randomNumber", Create( world_test_item.random_Number ));
-            json := json & jlocal;
-         end;
+      fortune_test_list := Fortune_Type_IO.Retrieve( criteria );
+      end_fortune_test.message := To_Unbounded_String( "Additional fortune added at request time." );
+      end_fortune_test.id := Natural( fortune_test_list.Length ) + 1; 
+      fortune_test_list.Append( end_fortune_test );
+      for fa of fortune_test_list loop
+         messages := messages & fa.message;         
+         ids := ids & fa.id'Img;         
       end loop;
-      Connection_Pool.Return_Connection( connection );
+      Insert( translations, Assoc( "MESSAGES", messages ));
+      Insert( translations, Assoc( "IDS", ids ));
       declare
-         s : constant String := Create( json ).Write;
+         s : constant String := Templates_Parser.Parse( "etc/test_4.thtml", translations );
       begin
-         return AWS.Response.Build( "application/json", s );
+         return AWS.Response.Build( "text/html", s );
       end;
    end Test4_Callback;
    

@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-12-01 16:44:14.894154
+-- Created by ada_generator.py on 2013-12-01 17:49:17.962343
 -- 
 with Techempower_Data;
 with DB_Commons;
@@ -76,7 +76,8 @@ package Fortune_Type_IO is
    -- functions to add something to a criteria
    --
    procedure Add_Id( c : in out d.Criteria; Id : Integer; op : d.operation_type:= d.eq; join : d.join_type := d.join_and );
-   procedure Add_Message( c : in out d.Criteria; Message : Text; op : d.operation_type:= d.eq; join : d.join_type := d.join_and );
+   procedure Add_Message( c : in out d.Criteria; Message : Unbounded_String; op : d.operation_type:= d.eq; join : d.join_type := d.join_and );
+   procedure Add_Message( c : in out d.Criteria; Message : String; op : d.operation_type:= d.eq; join : d.join_type := d.join_and );
    --
    -- functions to add an ordering to a criteria
    --

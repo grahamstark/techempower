@@ -14,10 +14,11 @@
         <table name="fortune" description="Test 2" >
                 <column name="id"  
                         primaryKey='true'
-                        type='INTEGER'
+                        type='INTEGER'                        
                         description=""/>
                 <column name="message"  
-                        type="TEXT" />
+                        type="VARCHAR"
+                        size='256' />
         </table>
         
 

@@ -15,7 +15,7 @@ CREATE TABLE world(
 
 CREATE TABLE fortune( 
        id INTEGER not null,
-       message TEXT,
+       message VARCHAR(256),
        PRIMARY KEY( id )
 );
 

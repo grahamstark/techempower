@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-12-01 16:44:14.905006
+-- Created by ada_generator.py on 2013-12-01 17:49:17.969340
 -- 
 with Techempower_Data;
 
@@ -203,7 +203,9 @@ package body Fortune_Type_IO is
             if not gse.Is_Null( cursor, 0 )then
                fortune.Id := gse.Integer_Value( cursor, 0 );
             end if;
-FIXME: MISSED BINDING FOR VAR message
+            if not gse.Is_Null( cursor, 1 )then
+               fortune.Message:= To_Unbounded_String( gse.Value( cursor, 1 ));
+            end if;
             l.append( fortune ); 
          end;
          gse.Next( cursor );
@@ -359,8 +361,15 @@ FIXME: MISSED BINDING FOR VAR message
    end Add_Id;
 
 
-   procedure Add_Message( c : in out d.Criteria; Message : Text; op : d.operation_type:= d.eq; join : d.join_type := d.join_and ) is   
-   elem : d.Criterion := d.make_Criterion_Element( "message", op, join, Message );
+   procedure Add_Message( c : in out d.Criteria; Message : Unbounded_String; op : d.operation_type:= d.eq; join : d.join_type := d.join_and ) is   
+   elem : d.Criterion := d.make_Criterion_Element( "message", op, join, To_String( Message ), 256 );
+   begin
+      d.add_to_criteria( c, elem );
+   end Add_Message;
+
+
+   procedure Add_Message( c : in out d.Criteria; Message : String; op : d.operation_type:= d.eq; join : d.join_type := d.join_and ) is   
+   elem : d.Criterion := d.make_Criterion_Element( "message", op, join, Message, 256 );
    begin
       d.add_to_criteria( c, elem );
    end Add_Message;
