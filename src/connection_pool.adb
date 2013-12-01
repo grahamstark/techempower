@@ -99,7 +99,7 @@ package body Connection_Pool is
          end if;
       end Lease;
       
-      procedure Return_Connection( c : dexec.Database_Connection ) is
+      entry Return_Connection( c : dexec.Database_Connection ) when True is
       use Connection_List_Package;
          cur : Cursor:= used_connections.Find( c );
       begin
