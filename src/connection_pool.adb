@@ -45,7 +45,7 @@ package body Connection_Pool is
    protected type Pool_Type is
 
       entry Lease( c : out dexec.Database_Connection );
-      procedure Return_Connection( c : dexec.Database_Connection );
+      entry Return_Connection( c : dexec.Database_Connection );
       procedure Initialise( 
          server_name  : String;
          database     : String;
