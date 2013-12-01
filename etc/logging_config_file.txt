@@ -2,12 +2,12 @@
 -- + on next line: enable everything by default
 +
 -- log to this file
->../logs/techempower.log
+>/home/graham_s/VirtualWorlds/projects/ada_mill/scripts/templates/techempower.log
 --
 --  core modules
 --
 DB_COMMONS=no
-CONNECTION_POOL=yes
+CONNECTION_POOL=no
 --
 -- testsuite
 --
@@ -16,6 +16,7 @@ TECHEMPOWER_TEST=yes
 -- io packages
 --
 WORLD_TYPE_IO=no
+FORTUNE_TYPE_IO=no
 -- 
 -- === CUSTOM LOGGING START ===
 -- === CUSTOM LOGGING END ===

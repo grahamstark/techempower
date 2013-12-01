@@ -1,5 +1,5 @@
 --
--- Created by ada_generator.py on 2013-11-27 11:28:58.430191
+-- Created by ada_generator.py on 2013-11-28 01:52:42.048974
 -- 
 with Ada.Containers.Vectors;
 --
@@ -22,6 +22,31 @@ package Techempower_Data is
    -- === CUSTOM TYPES START ===
    -- === CUSTOM TYPES END ===
 
+
+   --
+   -- record modelling fortune : Test 2
+   --
+   type Fortune_Type is record
+         Id : Integer := MISSING_I_KEY;
+         Message : Unbounded_String := Ada.Strings.Unbounded.Null_Unbounded_String;
+   end record;
+   --
+   -- container for fortune : Test 2
+   --
+   package Fortune_Type_List is new Ada.Containers.Vectors
+      (Element_Type => Fortune_Type,
+      Index_Type => Positive );
+   --
+   -- default value for fortune : Test 2
+   --
+   Null_Fortune_Type : constant Fortune_Type := (
+         Id => MISSING_I_KEY,
+         Message => Ada.Strings.Unbounded.Null_Unbounded_String
+   );
+   --
+   -- simple print routine for fortune : Test 2
+   --
+   function To_String( rec : Fortune_Type ) return String;
 
    --
    -- record modelling world : Test 2

@@ -63,14 +63,7 @@ begin
          Positive'Image( Global_Settings.Port ) & "; serving web root |" & 
          Global_Settings.Web_Root &
          "| press ctl-break to stop me ...");
-   Dispatchers.URI.Register_Regexp( 
-      my_dispatcher, 
-      Global_Settings.Web_Root & "db", 
-      Callbacks.Test2_Callback'Access );
-   Dispatchers.URI.Register_Regexp( 
-      my_dispatcher, 
-      Global_Settings.Web_Root & "queries", 
-      Callbacks.Test3_Callback'Access );
+
    Connection_Pool.Initialise(
       Environment.Get_Server_Name,
       Environment.Get_Database_Name,
@@ -79,6 +72,21 @@ begin
       90 -- postgres can't start with > 100 here on my machine
       );
 
+   Dispatchers.URI.Register_Regexp( 
+      my_dispatcher, 
+      Global_Settings.Web_Root & "db", 
+      Callbacks.Test2_Callback'Access );
+      
+   Dispatchers.URI.Register_Regexp( 
+      my_dispatcher, 
+      Global_Settings.Web_Root & "queries", 
+      Callbacks.Test3_Callback'Access );
+      
+   Dispatchers.URI.Register_Regexp( 
+      my_dispatcher, 
+      Global_Settings.Web_Root & "fortune", 
+      Callbacks.Test4_Callback'Access );
+      
    GNATColl.Traces.Parse_Config_File( "./etc/logging_config_file.txt" );
    AWS.Server.Log.Start( 
       Web_Server => Signal_Handler.aws_web_server,

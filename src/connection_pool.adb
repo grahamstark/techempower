@@ -97,10 +97,6 @@ package body Connection_Pool is
             used_connections.Append( c );
             free_connections.Delete( nf );
          end if;
-         Log( "connection leased; used now " & 
-            used_connections.Length'Img & 
-            "; free now " & free_connections.Length'Img & 
-            "; maximum " & maximum_size'Img );
       end Lease;
       
       procedure Return_Connection( c : dexec.Database_Connection ) is
@@ -109,10 +105,6 @@ package body Connection_Pool is
       begin
          used_connections.Delete( cur );
          free_connections.Append( c );
-         Log( "connection returned; used now " & 
-            used_connections.Length'Img & 
-            "; free now " & free_connections.Length'Img & 
-            "; maximum " & maximum_size'Img );
       end  Return_Connection;
       
       procedure Shutdown is

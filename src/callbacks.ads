@@ -24,5 +24,6 @@ package Callbacks is
    
    function Test2_Callback( request : in AWS.Status.Data ) return AWS.Response.Data;
    function Test3_Callback( request : in AWS.Status.Data ) return AWS.Response.Data;
+   function Test4_Callback( request : in AWS.Status.Data ) return AWS.Response.Data;
    
 end Callbacks;
